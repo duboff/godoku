@@ -42,5 +42,41 @@ func UnitList(rows, cols string) [][]string {
 	return resp
 }
 
+func Units(unitList [][]string, squares []string) map[string][][]string {
+	resp := make(map[string][][]string, len(squares))
+
+	for _, s := range squares {
+		unit := make([][]string, 3)
+		i := 0
+
+		for _, u := range unitList {
+			for _, uu := range u {
+				if uu == s {
+					unit[i] = u
+					resp[s] = unit
+					i++
+					break
+				}
+			}
+		}
+
+	}
+	return resp
+}
+
+func Peers(units map[string][][]string, squares []string) map[string]map[string]bool {
+	peers := make(map[string]map[string]bool, len(units))
+
+	for _, s := range squares {
+		for key, value := range units {
+			peer := make(map[string]bool)
+
+			for _, u := range value {
+				
+
+			}
+	}
+}
+
 func main() {
 }

@@ -22,3 +22,26 @@ func TestUnitList(t *testing.T) {
 	assert.Equal(t, firstRow, unitList[0])
 	assert.Equal(t, lastBox, unitList[26])
 }
+
+func TestUnits(t *testing.T) {
+	squares := Cross("ABCDEFGHI", "123456789")
+	unitList := UnitList("ABCDEFGHI", "123456789")
+	units := Units(unitList, squares)
+	expectedUnit := []string{"A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2", "I2"}
+
+	for _, s := range squares {
+		assert.Equal(t, 3, len(units[s]))
+	}
+	assert.Equal(t, expectedUnit, units["C2"][0])
+}
+
+func TestPeers(t *testing.T) {
+	squares := Cross("ABCDEFGHI", "123456789")
+	unitList := UnitList("ABCDEFGHI", "123456789")
+	units := Units(unitList, squares)
+	peers := Peers(units, squares)
+
+	for _, s := range squares {
+		assert.Equal(t, 3, len(peers[s]))
+	}
+}
