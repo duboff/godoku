@@ -42,6 +42,9 @@ func TestPeers(t *testing.T) {
 	peers := Peers(units, squares)
 
 	for _, s := range squares {
-		assert.Equal(t, 3, len(peers[s]))
+		assert.Equal(t, 20, len(peers[s]))
 	}
+	assert.Equal(t, "A2", peers["C2"][0])
+	assert.Equal(t, "B2", peers["C2"][1])
+	assert.Equal(t, "D2", peers["C2"][2])
 }

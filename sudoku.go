@@ -1,6 +1,7 @@
 package sudoku
 
-import ()
+import (
+)
 
 func Cross(A, B string) []string {
 	resp := make([]string, len(A)*len(B))
@@ -64,18 +65,32 @@ func Units(unitList [][]string, squares []string) map[string][][]string {
 	return resp
 }
 
-func Peers(units map[string][][]string, squares []string) map[string]map[string]bool {
-	peers := make(map[string]map[string]bool, len(units))
+func AppendIfMissing(slice []string, i string) []string {
+	for _, ele := range slice {
+    if ele == i {
+      return slice
+    }
+	}
+	return append(slice, i)
+}
+
+func Peers(units map[string][][]string, squares []string) map[string][]string {
+	resp := make(map[string][]string, len(squares))
 
 	for _, s := range squares {
-		for key, value := range units {
-			peer := make(map[string]bool)
+		unit := units[s]
+		peerList := make([]string, 0)
 
-			for _, u := range value {
-				
-
+		for _, u := range unit {
+			for _, q := range u {
+				if q != s {
+					peerList = AppendIfMissing(peerList, q)
+				}
 			}
+		}
+		resp[s] = peerList
 	}
+	return resp
 }
 
 func main() {
