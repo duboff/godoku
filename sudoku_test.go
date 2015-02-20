@@ -48,3 +48,17 @@ func TestPeers(t *testing.T) {
 	assert.Equal(t, "B2", peers["C2"][1])
 	assert.Equal(t, "D2", peers["C2"][2])
 }
+
+func TestParseGrid(t *testing.T) {
+	squares := Cross("ABC", "123")
+	grid := "1...2...3"
+	expectedGrid := ParseGrid(grid, squares)
+
+	assert.Equal(t, "1", expectedGrid["A1"])
+	assert.Equal(t, "3", expectedGrid["C3"])
+	assert.Equal(t, "2", expectedGrid["B2"])
+}
+
+// func TestEliminate(t *testing.T) {
+
+// }

@@ -93,5 +93,13 @@ func Peers(units map[string][][]string, squares []string) map[string][]string {
 	return resp
 }
 
+func ParseGrid(grid string, squares []string) map[string]string{
+	resp := make(map[string]string, len(squares))
+	for i, s := range squares {
+		resp[s] = string(grid[i])
+	}
+	return resp
+}
+
 func main() {
 }
