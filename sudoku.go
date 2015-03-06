@@ -1,6 +1,7 @@
 package sudoku
 
 import (
+	"strings"
 )
 
 func Cross(A, B string) []string {
@@ -99,6 +100,14 @@ func ParseGrid(grid string, squares []string) map[string]string{
 		resp[s] = string(grid[i])
 	}
 	return resp
+}
+
+func Eliminate(values map[string]string, key string, candidate string) map[string]string {
+	if !strings.Contains(values[key], candidate) {
+		return values
+	}
+
+	return values
 }
 
 func main() {
