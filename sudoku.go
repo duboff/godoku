@@ -106,7 +106,11 @@ func Eliminate(values map[string]string, key string, candidate string) map[strin
 	if !strings.Contains(values[key], candidate) {
 		return values
 	}
+	values[key] = strings.Replace(values[key], candidate, "", 1)
 
+	if len(values[key]) == 0 {
+		return nil
+	}
 	return values
 }
 
