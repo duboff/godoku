@@ -104,10 +104,22 @@ func Peers(units map[string][][]string, squares []string) map[string][]string {
 
 func ParseGrid(grid string, squares []string) map[string]string {
 	resp := make(map[string]string, len(squares))
+	
 	for i, s := range squares {
 		resp[s] = string(grid[i])
 	}
 	return resp
+}
+
+func Assign(values map[string]string, key string, candidate string) map[string]string {
+	newValues := strings.Replace(values[key], candidate, "", 1)
+
+	for _, v := range newValues {
+		if Eliminate(values, key, string(v)) == nil {
+			return nil
+		}
+	}
+	return values
 }
 
 func Eliminate(values map[string]string, key string, candidate string) map[string]string {

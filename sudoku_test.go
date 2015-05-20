@@ -59,6 +59,17 @@ func TestParseGrid(t *testing.T) {
 	assert.Equal(t, "2", expectedGrid["B2"])
 }
 
+func TestAssign(t *testing.T) {
+	values := make(map[string]string)
+	values["C1"] = "379"
+
+	assert.Equal(t, map[string]string{"C1":"9"}, Assign(values, "C1", "9"))
+
+	values["C1"] = "379"
+	values["C2"] = "9"
+	assert.Nil(t, Assign(values, "C1", "9"))
+}
+
 func TestEliminate(t *testing.T) {
 	values := make(map[string]string)
 	values["C1"] = "..3..7..9"
