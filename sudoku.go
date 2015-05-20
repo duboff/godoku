@@ -76,9 +76,9 @@ func Units(unitList [][]string, squares []string) map[string][][]string {
 
 func AppendIfMissing(slice []string, i string) []string {
 	for _, ele := range slice {
-    if ele == i {
-      return slice
-    }
+		if ele == i {
+			return slice
+		}
 	}
 	return append(slice, i)
 }
@@ -102,7 +102,7 @@ func Peers(units map[string][][]string, squares []string) map[string][]string {
 	return resp
 }
 
-func ParseGrid(grid string, squares []string) map[string]string{
+func ParseGrid(grid string, squares []string) map[string]string {
 	resp := make(map[string]string, len(squares))
 	for i, s := range squares {
 		resp[s] = string(grid[i])
@@ -126,7 +126,7 @@ func Eliminate(values map[string]string, key string, candidate string) map[strin
 			}
 		}
 	}
-	return values	
+	return values
 }
 
 func main() {
