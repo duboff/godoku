@@ -75,4 +75,9 @@ func TestEliminate(t *testing.T) {
 
 	values["C2"] = "7"
 	assert.Nil(t, Eliminate(values, "C2", "7"))
+
+	values["C3"] = "79"
+	values["C2"] = "7"
+
+	assert.Nil(t, Eliminate(values, "C3", "9"))
 }

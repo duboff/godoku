@@ -4,6 +4,14 @@ import (
 	"strings"
 )
 
+var cols string = "123456789"
+var rows string = "ABCDEFGHI"
+var squares []string = Cross(rows, cols)
+var unitlist [][]string = UnitList(rows, cols)
+var units map[string][][]string = Units(unitlist, squares)
+
+var peers map[string][]string = Peers(units, squares)
+
 func Cross(A, B string) []string {
 	resp := make([]string, len(A)*len(B))
 
@@ -110,8 +118,15 @@ func Eliminate(values map[string]string, key string, candidate string) map[strin
 
 	if len(values[key]) == 0 {
 		return nil
+	} else if len(values[key]) == 1 {
+		d2 := values[key]
+		for _, v2 := range peers[key] {
+			if Eliminate(values, v2, d2) == nil {
+				return nil
+			}
+		}
 	}
-	return values
+	return values	
 }
 
 func main() {
